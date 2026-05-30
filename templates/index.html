@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProFix - Worker Contacts</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+   .header {
+      text-align: center;
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+   .header h1 { font-size: 28px; margin-bottom: 5px; }
+   .header p { opacity: 0.9; font-size: 14px; }
+
+   .container { max-width: 650px; margin: 0 auto; }
+
+   .card {
+      background: white;
+      padding: 18px;
+      margin: 12px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.2s;
+    }
+   .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+
+   .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+   .info { flex-grow: 1; }
+   .job-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+   .Plumber { background: #e3f2fd; color: #1976d2; }
+   .Electrician { background: #fff3e0; color: #f57c00; }
+   .Carpenter { background: #e8f5e9; color: #388e3c; }
+   .Painter { background: #fce4ec; color: #c2185b; }
+
+   .name { font-size: 18px; font-weight: 600; color: #222; }
+   .rating { font-size: 13px; color: #ff9800; margin-top: 3px; }
+
+   .actions {
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
+   .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+   .btn-call { background: #25D366; color: white; }
+   .btn-call:hover { background: #1ebe5b; }
+   .btn-whatsapp { background: #075e54; color: white; }
+   .btn-whatsapp:hover { background: #054d44; }
+
+    @media (max-width: 600px) {
+     .card { flex-direction: column; text-align: center; }
+     .actions { flex-direction: row; width: 100%; }
+     .btn { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔧 ProFix Services</h1>
+    <p>Trusted workers at your fingertips</p>
+  </div>
+
+  <div class="container">
+    {% for worker in workers %}
+    <div class="card">
+      <div class="avatar">{{ worker.name[0] }}</div>
+
+      <div class="info">
+        <span class="job-badge {{ worker.job }}">{{ worker.job }}</span>
+        <div class="name">{{ worker.name }}</div>
+        <div class="rating">⭐ {{ worker.rating }} Verified</div>
+      </div>
+
+      <div class="actions">
+        <a href="tel:{{ worker.contact }}" class="btn btn-call">📞 Call</a>
+        <a href="https://wa.me/233{{ worker.contact[1:] }}" class="btn btn-whatsapp">💬 WhatsApp</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
