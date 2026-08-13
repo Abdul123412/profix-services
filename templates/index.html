@@ -121,9 +121,13 @@
       </div>
 
       <div class="actions">
-        <a href="tel:{{ worker.contact }}" class="btn btn-call">📞 Call</a>
-        <a href="https://wa.me/233{{ worker.contact[1:] }}" class="btn btn-whatsapp">💬 WhatsApp</a>
-      </div>
+  <a href="https://wa.me/233506351995?text=Hi%20ProFix%2C%20I%20want%20to%20book%20{{ worker.name }}%20for%20{{ worker.job }}%20in%20Koforidua" 
+     target="_blank" 
+     class="btn btn-call"
+     style="background:green;">
+     📞 Call via ProFix
+  </a>
+</div>
     </div>
     {% endfor %}
   </div>
